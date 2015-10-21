@@ -1767,6 +1767,7 @@ CREATE TABLE IF NOT EXISTS `usuario_carrera` (
   `id` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL,
   `carrera_id` int(11) NOT NULL,
+  `anio_academico_id`  varchar(50) NOT NULL,
   `estado` int(11) NOT NULL DEFAULT '1' COMMENT '0 = eliminado,1 = activo',
   `fecha_creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `usuario_creacion` int(11) NOT NULL
