@@ -38,7 +38,7 @@ require_once 'util/Configuraciones.php';
                 <div class="modal-content">
                     <div class="modal-header">
                         <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
-                        <h1 class="text-center">Inicio de sesión</h1>
+                        <h1 class="text-center">Inicio de sesión MB</h1>
                     </div>
                     <div class="modal-body">
                         <form class="form col-md-12 center-block">
