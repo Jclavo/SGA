@@ -1,0 +1,66 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+body{ background-color:#999;}
+
+#nombre{ border: double #069 ; display: inline-block; max-height:100%; max-width:100%;  width: 160px; height:25px; margin-top: 10px; font-size:18px;}
+
+#apellidos{  border: double #069 ; display: inline-block; max-height:100%; max-width:100%; width: 160px; height:25px; margin-top:10px; font-size:18px; }
+
+.guardar{ color: #FFF; 
+          border: 3px  #FFF solid;
+          background-color:
+              #000; max-width: 100%; max-height:100%; min-height:0.5%; min-width:0.5%;  width:85px; height:54px; font-size:14px; }
+
+.guardar:hover { 
+    font-style: inherit; background-color:#FFF; color:#000;  
+
+}
+
+#formulario{ display:inline-block; text-align:center;  width:350px; height:300px; margin-left:800px; background:#09F; font-size:24px; background-position:center; margin-right: 150px auto; margin-top:100px;  } 
+
+#respuesta{ color:#FFF; font-size:24px;  margin-left:700px;  margin-right:450px; margin-top:20px;  } 
+
+.error{
+    background-color: #BC1010;
+    border-radius: 4px 4px 4px 4px;
+    color: white;
+    font-weight: bold;
+    margin-left: 16px;
+    margin-top: 6px;
+    padding: 6px 12px;
+    position: absolute;
+}
+.error:before{
+    border-color: transparent #BC1010 transparent transparent;
+    border-style: solid;
+    border-width: 6px 8px;
+    content: "";
+    display: block;
+    height: 0;
+    left: -16px;
+    position: absolute;
+    top: 8px;
+    width: 0;
+}
+
+.result_ok{
+    background: none repeat scroll 0 0 #1EA700;
+    border-radius: 20px 20px 20px 20px;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    text-align: center;
+}
+.result_error{
+    background: none repeat scroll 0 0 red;
+    border-radius: 20px 20px 20px 20px;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    text-align: center;
+} 
+
+
