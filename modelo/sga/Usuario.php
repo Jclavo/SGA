@@ -148,9 +148,9 @@ class Usuario extends Conexion {
         return $query;
     }
     
-    public function obtenerXId($id){
+    public function obtenerDataBasicaXId($id){
         $this->conectar();
-        $this->consultaSP("sp_usuario_obtenerInfoXId(?)");
+        $this->consultaSP("sp_usuario_obtenerInfoBasicaXId(?)");
         $this->cargarDatosSP($id);
         $query = $this->ejecutarSP();
         $this->desconectar();

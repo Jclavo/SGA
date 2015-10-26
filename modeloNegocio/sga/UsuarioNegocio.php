@@ -22,23 +22,25 @@ class UsuarioNegocio extends negocioBase {
     }
 
     public function verificarSesion($usuarioID) {
-
-
         $data = array();
         if (empty($usuarioID)) {
             $respuesta = new stdClass();
             array_push($data, $this->getVerificarSesion(0));
-            $respuesta->menu = $data;
-            return $respuesta;
+            $respuesta->menu = $data;        
         } else {
             $usuario = new Usuario;
 
             $respuesta = new stdClass();
-            $respuesta->info = $usuario->obtenerXId($usuarioID);
+            $respuesta->info = $this->obtenerDataBasicaXId($usuarioID);
             $respuesta->menu = $usuario->ObtenerURL($usuarioID);
-
-            return $respuesta;
         }
+        return $respuesta;
+    }
+    
+    public function obtenerDataBasicaXId($usuarioID)
+    {
+        $usuario = new Usuario;
+        return $usuario->obtenerDataBasicaXId($usuarioID);
     }
 
     private function getVerificarSesion($resultado, $usuarioID = 0) {

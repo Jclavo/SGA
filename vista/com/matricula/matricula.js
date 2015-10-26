@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     cargarControlador('Matricula');
     obtenerEstadoMatricula();
-    
+
 });
 
 function respuestaAjax(data)
@@ -27,6 +27,9 @@ function respuestaAjax(data)
             break;
         case "matricular":
             onResponseMatricular(data.respuesta);
+            break;
+        case "obtenerReporteMatricula":
+            onResponseObtenerReporteMatricula(data.respuesta);
             break;
         default :
             break;
@@ -48,7 +51,7 @@ function onResponseObtenerEstadoMatricula(data)
     else
     {
         $('#titulo').empty();
-        $('#titulo').html("<h2 style='text-align:center;color:red;'>"+data[0]['vout_mensaje']+"</h2>");
+        $('#titulo').html("<h2 style='text-align:center;color:red;'>" + data[0]['vout_mensaje'] + "</h2>");
     }
 }
 
@@ -91,7 +94,7 @@ function aceptarMatricula()
     {
         cursosId = convertirCursoMatriculaACadena();
         agregarFuncion("matricular");
-        agregarParametro("cursos_id",cursosId);
+        agregarParametro("cursos_id", cursosId);
         enviarDataAjax();
     }
     else
@@ -106,13 +109,60 @@ function onResponseMatricular(data)
     {
         mensajeExito(data[0]['vout_mensaje']);
     }
+    else
+    {
+        mensajeAviso(data[0]['vout_mensaje']);
+    }
+}
+
+
+function obtenerReporteMatricula()
+{
+    agregarFuncion("obtenerReporteMatricula");
+    enviarDataAjax();
+}
+
+function onResponseObtenerReporteMatricula(data)
+{
+//   if (data.resultado[0]['vout_resultado'] === 0)
+//    {
+//        mensajeExito(data.resultado[0]['vout_mensaje']);
+//    }
 //    else
 //    {
-//        mensajeAviso(data[0]['vout_mensaje']);
-////        mensajeAviso("Aun no ha aprobado el requisito para matricularse en este curso.");
-//    }
+    cargarDataBasica(data.dato_basico_usuario);
+    cargarAnioAcademico(data.anio_academico);
+    cargarTablaReporteCursosMatricula(data.matricula);
+    abrirModalMatricula();
+//    } 
 }
 //funciones extras
+
+function cargarDataBasica(data)
+{
+    $('#codigo').append(data[0]['dni']);
+    $('#nombre').append(data[0]['nombre']);
+    $('#carrera').append(data[0]['nombre_carrera']);
+}
+
+function cargarAnioAcademico(data)
+{
+    $('#anio_academico').append(data[0]['anio']);
+}
+function cargarTablaReporteCursosMatricula(data)
+{
+    $('#datatableReporteMatricula').dataTable({
+//            "scrollX": true,
+        "order": [[0, "desc"]],
+        "data": data,
+        "columns": [
+            {"data": "curso_nombre"},
+            {"data": "creditos"},
+            {"data": "ciclo_nombre"}
+        ],
+        "destroy": true
+    });
+}
 
 function agregarCursoHorario()
 {
@@ -213,23 +263,32 @@ function cargarCursoATabla()
 function convertirCursoMatriculaACadena()
 {
     var arrayCursosId = [];
-    
+
     $.each(matricula, function (index, item) {
-            arrayCursosId[index] = item.id;
-        });
-        
+        arrayCursosId[index] = item.id;
+    });
+
     return arrayCursosId.toString();
 }
 
 function eliminarCursoHorario(indice)
 {
-    matricula.splice(indice,1);
+    matricula.splice(indice, 1);
     cargarCursoATabla();
 }
 
 
+function abrirModalMatricula()
+{
+    $('#modalVerMatricula').modal('show');
+}
 
-
-
-
-
+function imprimirMatricula()
+{
+//    var ficha = document.getElementById('parteAImprimir');
+//    var ventimp = window.open(' ', 'popimpr');
+//    ventimp.document.write(ficha.innerHTML);
+//    ventimp.document.close();
+//    ventimp.print();
+//    ventimp.close();
+}

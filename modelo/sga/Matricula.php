@@ -91,4 +91,14 @@ class Matricula extends Conexion {
         $this->desconectar();
         return $query;
     }
+    
+    public function obtenerReporteMatricula($usuarioId, $anioAcademicoId){
+        $this->conectar();
+        $this->consultaSP("sp_matricula_obtener(?,?)");
+        $this->cargarDatosSP($usuarioId);
+        $this->cargarDatosSP($anioAcademicoId);
+        $query = $this->ejecutarSP();
+        $this->desconectar();
+        return $query;
+    }
 }

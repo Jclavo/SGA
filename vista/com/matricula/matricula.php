@@ -15,6 +15,7 @@ require_once '../../../util/Configuraciones.php'
 
     </head>
     <body>
+
         <section class="panel" id="titulo">
             <header class="panel-heading">
                 Registro
@@ -44,12 +45,16 @@ require_once '../../../util/Configuraciones.php'
                     <div class="col-md-6">
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
-                                <button type="submit" class="btn btn-info" onclick="aceptarMatricula()">Guardar</button>
+                                <button type="submit" class="btn btn-success" onclick="aceptarMatricula()">Matricular</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <section class="panel" id="titulo">
+            <button class="btn btn-info" onclick="obtenerReporteMatricula()">Ver Matricula</button>
         </section>
 
         <section class="panel">
@@ -82,6 +87,83 @@ require_once '../../../util/Configuraciones.php'
             </div>
         </section>
 
+        <!--modal para ver matricula-->
+        <div class="modal fade" id="modalVerMatricula" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" id="parteAImprimir">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title">Información de Matricula</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>codigo</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p id="codigo"></p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>Alumno</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p id="nombre"></p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>Carrera</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p id="carrera"></p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>Anio Academico</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p id="anio_academico"></p>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    <section class="panel">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Cursos Matriculados</h3>
+                            </div>
+                            <div class="panel panel-body" >
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <table id="datatableReporteMatricula" class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th style='text-align:center;'>Curso</th>
+                                                <th style='text-align:center;'>Creditos</th>
+                                                <th style='text-align:center;'>Ciclo</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+
+                    <div class="modal-footer">
+                        <button class="btn btn-success" type="button" onclick="imprimirMatricula()">Imprimir</button>
+                        <button data-dismiss="modal" class="btn btn-danger" type="button">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- ponemos nuestros scripts -->
 
         <!--datatables-->

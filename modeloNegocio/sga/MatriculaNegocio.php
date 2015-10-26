@@ -5,6 +5,7 @@ require_once __DIR__ . '/../core/negocioBase.php';
 require_once __DIR__ . '/AnioAcademicoNegocio.php';
 require_once __DIR__ . '/CarreraNegocio.php';
 require_once __DIR__ . '/CursoNegocio.php';
+require_once __DIR__ . '/UsuarioNegocio.php';
 
 require_once __DIR__ . '/../../modelo/sga/Matricula.php';
 require_once __DIR__ . '/../../util/util.php';
@@ -63,8 +64,8 @@ class MatriculaNegocio extends negocioBase {
             $matricula->guardarMatriculaCurso($matriculaId, $curso);
         }
     }
-    
-     public function obtenerEstadoMatricula($usuarioId) {
+
+    public function obtenerEstadoMatricula($usuarioId) {
         $anioAcademico = new AnioAcademico();
         $respuestaAnioAcademico = $anioAcademico->obtenerAnioAcademicoActual();
 
@@ -75,33 +76,55 @@ class MatriculaNegocio extends negocioBase {
 
         return $respuestaMatricula;
     }
-    
+
     public function obtenerNotasXUsuario($usuarioId) {
 
         $matricula = new Matricula();
         $respuestaMatriculaXUsuario = $matricula->obtenerXUsuario($usuarioId);
         return $respuestaMatriculaXUsuario;
     }
-    
+
     public function obtenerAlumnosXCurso($cursoId) {
 
         $matricula = new Matricula();
         $respuestaObtenerAlumnosXCurso = $matricula->obtenerAlumnosXCurso($cursoId);
         return $respuestaObtenerAlumnosXCurso;
     }
-    
+
     public function guardarNota($id, $nota, $indice) {
 
         $matricula = new Matricula();
         $respuestaGuardarNota = $matricula->guardarNota($id, $nota, $indice);
         return $respuestaGuardarNota;
     }
-    
+
     public function obtenerPromedio($id) {
 
         $matricula = new Matricula();
         $respuestaObtenerPromedio = $matricula->obtenerPromedio($id);
         return $respuestaObtenerPromedio;
+    }
+    
+    public function obtenerReporteMatricula($usuarioId) {
+
+        $respuesta = new stdClass();
+        
+        $usuario = new UsuarioNegocio(); 
+     
+        $respuesta->dato_basico_usuario = $usuario->obtenerDataBasicaXId($usuarioId);
+        
+        $anioAcademico = new AnioAcademico();
+        
+        $respuestaAnioAcademico = $anioAcademico->obtenerAnioAcademicoActual();
+        
+        $respuesta->anio_academico = $respuestaAnioAcademico;
+        
+        if (!empty($respuestaAnioAcademico[0]['id'])) {
+            $matricula = new Matricula();
+            $respuesta->matricula = $matricula->obtenerReporteMatricula($usuarioId, $respuestaAnioAcademico[0]['id']);
+        }
+
+        return $respuesta;
     }
 
 }
