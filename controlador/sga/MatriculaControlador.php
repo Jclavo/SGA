@@ -41,7 +41,11 @@ switch ($nombreFuncion) {
         $respuesta = $matricula->obtenerNotasXUsuario($usuarioId);
         retornarVista($respuesta);
         break;
-
+    case "obtenerReporteMatricula":
+        $usuarioId = obtenerUsuarioSesion();
+        $respuesta = $matricula->obtenerReporteMatricula($usuarioId);
+        retornarVista($respuesta);
+        break;
     default:
         break;
 }
