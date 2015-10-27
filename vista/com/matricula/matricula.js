@@ -140,14 +140,14 @@ function onResponseObtenerReporteMatricula(data)
 
 function cargarDataBasica(data)
 {
-    $('#codigo').append(data[0]['dni']);
-    $('#nombre').append(data[0]['nombre']);
-    $('#carrera').append(data[0]['nombre_carrera']);
+    $('#codigo').html(data[0]['dni']);
+    $('#nombre').html(data[0]['nombre']);
+    $('#carrera').html(data[0]['nombre_carrera']);
 }
 
 function cargarAnioAcademico(data)
 {
-    $('#anio_academico').append(data[0]['anio']);
+    $('#anio_academico').html(data[0]['anio']);
 }
 function cargarTablaReporteCursosMatricula(data)
 {
