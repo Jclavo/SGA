@@ -12,10 +12,11 @@ class Carrera extends Conexion {
         return $query;
     }
     
-    public function agregarCarrera($carreraNombre,$estado,$usuarioCreacion){
+    public function agregarCarrera($carreraNombre,$precio,$estado,$usuarioCreacion){
         $this->conectar();
-        $this->consultaSP("sp_carrera_agregar(?,?,?)");
+        $this->consultaSP("sp_carrera_agregar(?,?,?,?)");
         $this->cargarDatosSP($carreraNombre);
+        $this->cargarDatosSP($precio);
         $this->cargarDatosSP($estado);
         $this->cargarDatosSP($usuarioCreacion);
         $query = $this->ejecutarSP();
@@ -23,11 +24,12 @@ class Carrera extends Conexion {
         return $query;
     }
     
-    public function editarCarrera($carreraId,$carreraNombre,$estado){
+    public function editarCarrera($carreraId,$carreraNombre,$precio,$estado){
         $this->conectar();
-        $this->consultaSP("sp_carrera_editar(?,?,?)");
+        $this->consultaSP("sp_carrera_editar(?,?,?,?)");
         $this->cargarDatosSP($carreraId);
         $this->cargarDatosSP($carreraNombre);
+        $this->cargarDatosSP($precio);
         $this->cargarDatosSP($estado);
         $query = $this->ejecutarSP();
         $this->desconectar();
@@ -46,6 +48,15 @@ class Carrera extends Conexion {
     public function obtenerXDocente($usuarioId){
         $this->conectar();
         $this->consultaSP("sp_carrera_obtenerXDocente(?)");
+        $this->cargarDatosSP($usuarioId);
+        $query = $this->ejecutarSP();
+        $this->desconectar();
+        return $query;
+    }
+    
+    public function obtenerPrecioXUsuario($usuarioId){
+        $this->conectar();
+        $this->consultaSP("sp_carrera_obtenerPrecioXUsuario(?)");
         $this->cargarDatosSP($usuarioId);
         $query = $this->ejecutarSP();
         $this->desconectar();

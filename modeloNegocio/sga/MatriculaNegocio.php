@@ -119,6 +119,12 @@ class MatriculaNegocio extends negocioBase {
         
         $respuesta->anio_academico = $respuestaAnioAcademico;
         
+        $carrera = new CarreraNegocio();
+        
+        $respuestaPrecioCarrera = $carrera->obtenerPrecioXUsuario($usuarioId);
+        
+        $respuesta->precio_carrera = $respuestaPrecioCarrera;
+        
         if (!empty($respuestaAnioAcademico[0]['id'])) {
             $matricula = new Matricula();
             $respuesta->matricula = $matricula->obtenerReporteMatricula($usuarioId, $respuestaAnioAcademico[0]['id']);

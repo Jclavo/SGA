@@ -7,6 +7,7 @@ $(document).ready(function () {
     select2.iniciar();
 
     cargarControlador('Matricula');
+    $('#resultado').hide();
     obtenerEstadoMatricula();
 
 });
@@ -52,6 +53,8 @@ function onResponseObtenerEstadoMatricula(data)
     {
         $('#titulo').empty();
         $('#titulo').html("<h2 style='text-align:center;color:red;'>" + data[0]['vout_mensaje'] + "</h2>");
+        $('#resultado').show();
+
     }
 }
 
@@ -132,12 +135,17 @@ function onResponseObtenerReporteMatricula(data)
 //    {
     cargarDataBasica(data.dato_basico_usuario);
     cargarAnioAcademico(data.anio_academico);
+    cargarPrecioCarrera(data.precio_carrera);
     cargarTablaReporteCursosMatricula(data.matricula);
     abrirModalMatricula();
 //    } 
 }
 //funciones extras
 
+function cargarPrecioCarrera(data)
+{
+    $('#precio').html(data[0]['precio']);
+}
 function cargarDataBasica(data)
 {
     $('#codigo').html(data[0]['dni']);
@@ -210,10 +218,12 @@ function agregarCurso(data)
     {
         var curso = {id: null,
             curso: null,
+            ciclo: null,
             credito: null};
 
         curso.id = data[0].id;
         curso.curso = data[0].nombre;
+        curso.ciclo = data[0].ciclo;
         curso.credito = data[0].creditos;
 
 
@@ -252,6 +262,7 @@ function cargarCursoATabla()
             html = "";
             html += "<tr>";
             html += "<th style='text-align:center;'>" + item.curso + "</th>";
+            html += "<th style='text-align:center;'>" + item.ciclo + "</th>";
             html += "<th style='text-align:center;'>" + item.credito + "</th>";
             html += "<th style='text-align:center;'><a onclick='eliminarCursoHorario(" + index + ")'><b><i class='fa fa-trash-o' style='color:#cb2a2a;'></i><b></a></th>";
             html += "</tr>";

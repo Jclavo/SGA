@@ -71,7 +71,7 @@ function onResponseObtenerCarreras(data)
     {
         $.each(data, function (index, item) {
 
-            data[index]["opciones"] = '<a onclick="editarCarrera(' + item['id'] + ', \'' + item['nombre'] + '\',' + item['estado'] + ')"><b><i class="fa fa-edit" style="color:#E8BA2F;"></i><b></a>\n\
+            data[index]["opciones"] = '<a onclick="editarCarrera(' + item['id'] + ', \'' + item['nombre'] + '\',\'' + item['precio'] + '\',' + item['estado'] + ')"><b><i class="fa fa-edit" style="color:#E8BA2F;"></i><b></a>\n\
                                    <a onclick="eliminarCarrera(' + item['id'] + ')"><b><i class="fa fa-trash-o" style="color:#cb2a2a;"></i><b></a>';
 
             if (data[index]["estado"] === 1)
@@ -90,6 +90,7 @@ function onResponseObtenerCarreras(data)
             "data": data,
             "columns": [
                 {"data": "nombre"},
+                {"data": "precio"},
                 {"data": "estado", "sClass": "alignCenter"},
                 {"data": "opciones", "sClass": "alignCenter"}
             ],
@@ -104,7 +105,7 @@ function onResponseObtenerCarreras(data)
 }
 
 
-function guardarCarrera(carrera, estado)
+function guardarCarrera(carrera,precio, estado)
 {
     if (!isEmpty(CARRERA_ID))
     {
@@ -116,6 +117,7 @@ function guardarCarrera(carrera, estado)
         agregarFuncion("agregarCarrera");
     }
     agregarParametro("carrera", carrera);
+    agregarParametro("precio", precio);
     agregarParametro("estado", estado);
     enviarDataAjax();
 }
@@ -148,12 +150,20 @@ function eliminarCarrera(usuarioId)
 function agregarCarrera()
 {
     var carrera = $('#txtCarrera').val();
+    var precio = $('#txtPrecio').val();
     var estado = $('#cboEstado').val();
-
 
     if (validarCadena(carrera, 50))
     {
-        guardarCarrera(carrera, estado);
+        if (validarNumero(precio, 0))
+        {
+            guardarCarrera(carrera,precio, estado);
+        }
+        else
+        {
+            mensajeAviso("Ingrese un precio.");
+        }
+
     }
     else
     {
@@ -162,18 +172,20 @@ function agregarCarrera()
 
 }
 
-function editarCarrera(carreraId,nombre,estado)
+function editarCarrera(carreraId, nombre,precio, estado)
 {
     CARRERA_ID = carreraId;
     $('#txtCarrera').val(nombre);
+    $('#txtPrecio').val(precio);
     select2.asignarValor('cboEstado', estado);
-    
+
     $('#txtCarrera').focus();
 }
 
 function limpiarFormCarrera()
 {
     $('#txtCarrera').val("");
+    $('#txtPrecio').val("");
     select2.asignarValor('cboEstado', "1");
 }
 

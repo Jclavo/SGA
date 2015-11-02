@@ -53,8 +53,15 @@ require_once '../../../util/Configuraciones.php'
             </div>
         </section>
 
-        <section class="panel" id="titulo">
-            <button class="btn btn-info" onclick="obtenerReporteMatricula()">Ver Matricula</button>
+        <section class="panel" id="resultado">
+            <div class="row">
+                <div class="col-lg-4">
+                    <button class="btn btn-info" onclick="obtenerReporteMatricula()">Ver Matricula</button>
+                </div> 
+                <div class="col-lg-8">
+                    <h2><p style="color: red;">TIENE 48 HORAS PARA PAGAR SU MATRICULA</p></h2>
+                </div> 
+            </div>
         </section>
 
         <section class="panel">
@@ -68,6 +75,7 @@ require_once '../../../util/Configuraciones.php'
                             <thead>
                                 <tr>
                                     <th style='text-align:center;'>Curso</th>
+                                    <th style='text-align:center;'>Ciclo</th>
                                     <th style='text-align:center;'>Creditos</th>
                                     <th style='text-align:center;'>Acciones</th>
                                 </tr>
@@ -130,6 +138,15 @@ require_once '../../../util/Configuraciones.php'
                             </div>
                             <div class="col-sm-6">
                                 <p id="anio_academico"></p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>Precio</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p id="precio"></p>
                             </div>
                         </div>
                         <br>

@@ -13,15 +13,15 @@ class CarreraNegocio extends negocioBase{
         return $respuestaObtenerCarreras;
     }
     
-    public function agregarCarrera($carreraNombre,$estado,$usuarioCreacion) {
+    public function agregarCarrera($carreraNombre,$precio,$estado,$usuarioCreacion) {
         $carrera = new Carrera;
-        $respuestaAgregarCarrera = $carrera->agregarCarrera($carreraNombre,$estado,$usuarioCreacion);
+        $respuestaAgregarCarrera = $carrera->agregarCarrera($carreraNombre,$precio,$estado,$usuarioCreacion);
         return $respuestaAgregarCarrera;
     }
     
-    public function editarCarrera($carreraId,$carreraNombre,$estado) {
+    public function editarCarrera($carreraId,$carreraNombre,$precio,$estado) {
         $carrera = new Carrera;
-        $respuestaEditarCarrera = $carrera->editarCarrera($carreraId,$carreraNombre,$estado);
+        $respuestaEditarCarrera = $carrera->editarCarrera($carreraId,$carreraNombre,$precio,$estado);
         return $respuestaEditarCarrera;
     }
     
@@ -35,6 +35,12 @@ class CarreraNegocio extends negocioBase{
         $carrera = new Carrera;
         $respuestaObtenerCarreraXDocente = $carrera->obtenerXDocente($usuarioId);
         return $respuestaObtenerCarreraXDocente;
+    }
+    
+    public function obtenerPrecioXUsuario($usuarioId) {
+        $carrera = new Carrera;
+        $respuestaObtenerPrecioXUsuario = $carrera->obtenerPrecioXUsuario($usuarioId);
+        return $respuestaObtenerPrecioXUsuario;
     }
     
 }

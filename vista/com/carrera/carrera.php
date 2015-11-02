@@ -27,7 +27,18 @@ require_once '../../../util/Configuraciones.php'
                                 </div>
                             </div>
                         </div>
-                        
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Precio</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" id="txtPrecio" maxlength="50">
+                                </div>
+                            </div>
+                        </div>
+                            
+                    </div>
+                    <br>
+                    <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">Estado</label>
@@ -39,8 +50,6 @@ require_once '../../../util/Configuraciones.php'
                                     </div>
                                 </div>
                             </div>
-                     
-
                     </div>
                     <br>
                 </form>
@@ -67,6 +76,7 @@ require_once '../../../util/Configuraciones.php'
                             <thead>
                                 <tr>
                                     <th style='text-align:center;'>Carrera</th>
+                                    <th style='text-align:center;'>Precio</th>
                                     <th style='text-align:center;'>Estado</th>
                                     <th style='text-align:center;'>Acciones</th>
                                 </tr>

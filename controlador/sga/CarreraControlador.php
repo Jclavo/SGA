@@ -15,19 +15,21 @@ switch ($nombreFuncion) {
         break;
     case "agregarCarrera":
         $carreraNombre = obtenerParametro("carrera");
+        $precio = obtenerParametro("precio");
         $estado = obtenerParametro("estado");
         $usuarioCreacion = obtenerUsuarioSesion();
         
-        $respuesta = $carrera->agregarCarrera($carreraNombre,$estado,$usuarioCreacion);
+        $respuesta = $carrera->agregarCarrera($carreraNombre,$precio,$estado,$usuarioCreacion);
         retornarVista($respuesta);
         break;
     
     case "editarCarrera":
         $carreraId = obtenerParametro("carrera_id");
         $carreraNombre = obtenerParametro("carrera");
+        $precio = obtenerParametro("precio");
         $estado = obtenerParametro("estado");
         
-        $respuesta = $carrera->editarCarrera($carreraId,$carreraNombre,$estado);
+        $respuesta = $carrera->editarCarrera($carreraId,$carreraNombre,$precio,$estado);
         retornarVista($respuesta);
         break;
     case "eliminarCarrera":
