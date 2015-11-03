@@ -26,7 +26,7 @@ switch ($nombreFuncion) {
         $respuesta = $nota->obtenerAlumnosXCurso($cursoId);
         retornarVista($respuesta);
         break;
-    case "guardarNota":     
+    case "guardarNota":
         $cadenaId = obtenerParametro("array_id");
         $cadenaNota1 = obtenerParametro("array_nota_1");
         $cadenaNota2 = obtenerParametro("array_nota_2");

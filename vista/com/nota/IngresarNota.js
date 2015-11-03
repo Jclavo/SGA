@@ -98,6 +98,7 @@ function onResponseObtenerAlumnosXCurso(data)
     var nota2;
     var nota3;
     var promedio;
+    arrayIdAlumno = [];
     $('#cuerpoTabla').empty();
     if (!isEmpty(data))
     {
@@ -124,6 +125,9 @@ function onResponseObtenerAlumnosXCurso(data)
 
 function obtenerNotas()
 {
+    nota1 = [];
+    nota2 = [];
+    nota3 = [];
     if (!isEmpty(arrayIdAlumno))
     {
         $.each(arrayIdAlumno, function (index, item) {
